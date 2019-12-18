@@ -1,0 +1,54 @@
+{
+  "name": "pixel",
+  "version": "1.0.0",
+  "description": "Browser based pixel art creator",
+  "keywords": [
+    "Pixel"
+  ],
+  "main": "index.js",
+  "dependencies": {
+    "konva": "4.0.18",
+    "react": "16.10.1",
+    "react-dom": "16.10.1",
+    "react-konva": "16.10.1-0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
+    "@types/react": "^16.9.16",
+    "@types/react-dom": "^16.9.4",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^6.7.2",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.17.0",
+    "html-webpack-plugin": "^3.2.0",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.2.1",
+    "nodemon": "^1.18.9",
+    "typescript": "^3.7.3",
+    "webpack": "^4.41.3",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-middleware": "^3.5.1",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-hot-middleware": "^2.24.3"
+  },
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.7.0"
+  },
+  "scripts": {
+    "test": "eslint",
+    "start:nodemon": "nodemon --inspect server.js",
+    "dev": "npm run start:nodemon && npm run fed:dev",
+    "start": "npm run build && node server.js",
+    "fed:dev": "webpack-dev-server --hot",
+    "build": "webpack"
+  },
+  "author": "George Butter",
+  "license": "ISC"
+}
