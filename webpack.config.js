@@ -21,7 +21,7 @@ module.exports = {
   },
   mode,
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.css'],
   },
   plugins: [
     new CleanWebpackPlugin({
@@ -55,6 +55,19 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          'postcss-loader',
+        ],
+      },
       {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
