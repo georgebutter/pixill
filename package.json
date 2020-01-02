@@ -45,7 +45,8 @@
     "test": "eslint",
     "start:nodemon": "nodemon --inspect server.js",
     "dev": "npm run start:nodemon && npm run fed:dev",
-    "start": "npm run build && node server.js",
+    "start": "node server.js",
+    "log": "heroku logs -a pixill --tail",
     "fed:dev": "webpack-dev-server --hot",
     "build": "webpack"
   },
