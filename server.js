@@ -14,7 +14,7 @@ if (env === 'development') {
   }));
 }
 
-app.use(express.static('client'));
+app.use(express.static('dist'));
 
 app.listen(port, () => {
   const name = process.env.npm_package_name;
