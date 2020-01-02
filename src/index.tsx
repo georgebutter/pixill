@@ -1,30 +1,71 @@
 import * as React from 'react';
 import './index.css'
 import { render } from 'react-dom';
-import { Stage, Layer, Rect, Text } from 'react-konva';
-import Konva from 'konva';
+import { Stage, Layer } from 'react-konva';
+import Canvas from './canvas';
+import Menu from './menu';
 
-const ColouredRect: React.FC = () => {
-  const [color, setColor] = React.useState(Konva.Util.getRandomColor());
+
+const App: React.FC = () => {
+  const [tool, setTool] = React.useState('Move')
+  const [cellSize, setCellSize] = React.useState(10)
+  const [rowCount, setRowCount] = React.useState(32)
+  const [columnCount, setColumnCount] = React.useState(32)
   return (
-    <Rect
-      x={20}
-      y={20}
-      width={50}
-      height={50}
-      fill={color}
-      onClick={() => setColor(Konva.Util.getRandomColor())}
-    />
+    <main className={'flex flex-col'}>
+      <Menu></Menu>
+      <div className={'flex-1 bg-blue-200'}>
+        <div>
+          <Stage
+            className={`
+              ${tool === 'Move' ? 'cursor-move' : ''}
+              ${tool === 'Draw' ? 'crosshair' : ''}
+            `}
+            width={window.innerWidth}
+            height={window.innerHeight}
+            draggable={tool === 'Move'}
+          >
+            <Layer
+              x={(window.innerWidth / 2) - ((rowCount * cellSize) / 2)}
+              y={(window.innerHeight / 2) - ((columnCount * cellSize) / 2)}
+            >
+              <Canvas
+                columnCount={columnCount}
+                rowCount={rowCount}
+                cellSize={cellSize}
+                tool={tool}
+              />
+            </Layer>
+          </Stage>
+        </div>
+        <div className={'bg-gray-500 fixed inset-y-0 right-0 z-20'}>
+          <ul className={``}>
+            <li>
+              <button
+                className={'p-1'}
+                onClick={() => {
+                  setTool('Move')
+                }}
+              >
+                Move
+              </button>
+            </li>
+            <li>
+              <button
+                className={'p-1'}
+                onClick={() => {
+                  setTool('Draw')
+                }}
+              >
+                Draw
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
   )
 }
 
-const App: React.FC = () => (
-  <Stage width={window.innerWidth} height={window.innerHeight}>
-    <Layer>
-      <Text text="Click on the square" />
-      <ColouredRect />
-    </Layer>
-  </Stage>
-)
 
 render(<App />, document.getElementById('root'));
