@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import { Stage, Layer } from 'react-konva';
 import Canvas from './canvas';
 import Menu from './menu';
+import Toolbar from './toolbar';
 
 
 const App: React.FC = () => {
@@ -38,30 +39,7 @@ const App: React.FC = () => {
             </Layer>
           </Stage>
         </div>
-        <div className={'bg-gray-500 fixed inset-y-0 right-0 z-20'}>
-          <ul className={``}>
-            <li>
-              <button
-                className={'p-1'}
-                onClick={() => {
-                  setTool('Move')
-                }}
-              >
-                Move
-              </button>
-            </li>
-            <li>
-              <button
-                className={'p-1'}
-                onClick={() => {
-                  setTool('Draw')
-                }}
-              >
-                Draw
-              </button>
-            </li>
-          </ul>
-        </div>
+        <Toolbar setTool={setTool}/>
       </div>
     </main>
   )

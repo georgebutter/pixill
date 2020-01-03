@@ -21,6 +21,8 @@ const CanvasCell: React.FC<Props> = ({ row, cell, cellSize, tool }) => {
           setColor('#000')
         } else if (tool === 'Draw' && e.evt.buttons === 2) {
           setColor('#fff')
+        } else if (tool === 'Erase' && e.evt.buttons === 1) {
+          setColor('#fff')
         }
       }}
     />
