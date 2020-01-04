@@ -2,27 +2,29 @@ import * as React from 'react';
 import { Rect } from 'react-konva';
 import Konva from 'konva';
 
-const CanvasCell: React.FC<Props> = ({ row, cell, cellSize, tool }) => {
-  const [color, setColor] = React.useState('#fff');
+const CanvasCell: React.FC<Props> = ({ row, cell, cellSize, tool, colour }) => {
+  const [cellColour, setCellColour] = React.useState('#fff');
   return (
     <Rect
       x={cell * cellSize}
       y={row * cellSize}
       width={cellSize}
       height={cellSize}
-      fill={color}
+      fill={cellColour}
       onClick={() => {
         if (tool === 'Draw') {
-          setColor('#000')
+          setCellColour(`#${colour}`)
+        } else if (tool === 'Erase') {
+          setCellColour('#fff')
         }
       }}
       onMouseOver={(e) => {
         if (tool === 'Draw' && e.evt.buttons === 1) {
-          setColor('#000')
+          setCellColour(`#${colour}`)
         } else if (tool === 'Draw' && e.evt.buttons === 2) {
-          setColor('#fff')
+          setCellColour('#fff')
         } else if (tool === 'Erase' && e.evt.buttons === 1) {
-          setColor('#fff')
+          setCellColour('#fff')
         }
       }}
     />
@@ -34,6 +36,7 @@ export interface Props {
   cell: number;
   cellSize: number;
   tool: string;
+  colour: string;
 }
 
 export default CanvasCell
