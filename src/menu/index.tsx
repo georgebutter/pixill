@@ -1,19 +1,7 @@
 import * as React from 'react';
+import MenuButton from './button';
 
-const MenuButton: React.FC<Props> = ({ name, menu, setMenu }) => (
-  <li>
-    <button
-      className={`p-2 outline-none focus:outline-none active:outline-none ${menu === name ? 'bg-blue-500' : ''}`}
-      onClick={() => {
-        setMenu((prev) => prev === name ? '' : name)}
-      }
-    >
-      {name}
-    </button>
-  </li>
-)
-
-const Menu: React.FC = () => {
+const Menu: React.FC<Props> = ({ saveImage }) => {
   const [menu, setMenu] = React.useState('')
   return (
     <nav className={'bg-gray-900 text-white text-sm fixed top-0 inset-x-0 z-10'}>
@@ -25,15 +13,21 @@ const Menu: React.FC = () => {
         </li>
         <MenuButton name={'File'} setMenu={setMenu} menu={menu} />
         <MenuButton name={'Insert'} setMenu={setMenu} menu={menu} />
+        <li>
+          <button
+            className={`p-2 outline-none focus:outline-none active:outline-none`}
+            onClick={() => saveImage()}
+          >
+            {'Save image'}
+          </button>
+        </li>
       </ul>
     </nav>
   )
 }
 
 export interface Props {
-  name: string;
-  menu: string;
-  setMenu: React.Dispatch<React.SetStateAction<string>>;
+  saveImage: () => void;
 }
 
 export default Menu;

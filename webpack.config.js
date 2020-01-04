@@ -20,6 +20,7 @@ module.exports = {
     index: './src/index.tsx',
   },
   mode,
+  devtool: mode === 'development' ? 'eval-source-map' : false,
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.css'],
   },
