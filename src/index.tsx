@@ -6,7 +6,6 @@ import Canvas from './canvas';
 import Menu from './menu';
 import Toolbar from './toolbar';
 
-
 const App: React.FC = () => {
   const [tool, setTool] = React.useState('Move')
   const [cellSize, setCellSize] = React.useState(10)
@@ -39,7 +38,10 @@ const App: React.FC = () => {
             </Layer>
           </Stage>
         </div>
-        <Toolbar setTool={setTool}/>
+        <Toolbar
+          setTool={setTool}
+          setCellSize={setCellSize}
+        />
       </div>
     </main>
   )
